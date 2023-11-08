@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5BD1D9A2AFBB7D4006879C3 /* TopNewsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD1D992AFBB7D4006879C3 /* TopNewsTableVC.swift */; };
+		C5BD1D9C2AFBB7EF006879C3 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD1D9B2AFBB7EF006879C3 /* NewsCell.swift */; };
 		C5EB52542AFA7EFC00B46C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52532AFA7EFC00B46C52 /* AppDelegate.swift */; };
 		C5EB52562AFA7EFC00B46C52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52552AFA7EFC00B46C52 /* SceneDelegate.swift */; };
 		C5EB52582AFA7EFC00B46C52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52572AFA7EFC00B46C52 /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C5BD1D992AFBB7D4006879C3 /* TopNewsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsTableVC.swift; sourceTree = "<group>"; };
+		C5BD1D9B2AFBB7EF006879C3 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		C5EB52502AFA7EFC00B46C52 /* WagnerTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WagnerTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EB52532AFA7EFC00B46C52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5EB52552AFA7EFC00B46C52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5BD1D952AFBB6A9006879C3 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C5EB52592AFA7EFC00B46C52 /* Main.storyboard */,
+				C5EB52612AFA7EFE00B46C52 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C5BD1D962AFBB6B5006879C3 /* Viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				C5EB52572AFA7EFC00B46C52 /* ViewController.swift */,
+				C5BD1D992AFBB7D4006879C3 /* TopNewsTableVC.swift */,
+			);
+			path = Viewcontrollers;
+			sourceTree = "<group>";
+		};
+		C5BD1D972AFBB6C4006879C3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C5EB52532AFA7EFC00B46C52 /* AppDelegate.swift */,
+				C5EB52552AFA7EFC00B46C52 /* SceneDelegate.swift */,
+				C5EB52642AFA7EFE00B46C52 /* Info.plist */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C5BD1D982AFBB6D5006879C3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C5EB525F2AFA7EFE00B46C52 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		C5BD1D9D2AFBB7F3006879C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5BD1D9B2AFBB7EF006879C3 /* NewsCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C5EB52472AFA7EFC00B46C52 = {
 			isa = PBXGroup;
 			children = (
@@ -58,13 +106,11 @@
 		C5EB52522AFA7EFC00B46C52 /* WagnerTeam */ = {
 			isa = PBXGroup;
 			children = (
-				C5EB52532AFA7EFC00B46C52 /* AppDelegate.swift */,
-				C5EB52552AFA7EFC00B46C52 /* SceneDelegate.swift */,
-				C5EB52572AFA7EFC00B46C52 /* ViewController.swift */,
-				C5EB52592AFA7EFC00B46C52 /* Main.storyboard */,
-				C5EB525F2AFA7EFE00B46C52 /* Assets.xcassets */,
-				C5EB52612AFA7EFE00B46C52 /* LaunchScreen.storyboard */,
-				C5EB52642AFA7EFE00B46C52 /* Info.plist */,
+				C5BD1D972AFBB6C4006879C3 /* Services */,
+				C5BD1D9D2AFBB7F3006879C3 /* Views */,
+				C5BD1D962AFBB6B5006879C3 /* Viewcontrollers */,
+				C5BD1D952AFBB6A9006879C3 /* Storyboards */,
+				C5BD1D982AFBB6D5006879C3 /* Assets */,
 				C5EB525C2AFA7EFC00B46C52 /* WagnerTeam.xcdatamodeld */,
 			);
 			path = WagnerTeam;
@@ -143,7 +189,9 @@
 			files = (
 				C5EB52582AFA7EFC00B46C52 /* ViewController.swift in Sources */,
 				C5EB52542AFA7EFC00B46C52 /* AppDelegate.swift in Sources */,
+				C5BD1D9A2AFBB7D4006879C3 /* TopNewsTableVC.swift in Sources */,
 				C5EB525E2AFA7EFC00B46C52 /* WagnerTeam.xcdatamodeld in Sources */,
+				C5BD1D9C2AFBB7EF006879C3 /* NewsCell.swift in Sources */,
 				C5EB52562AFA7EFC00B46C52 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +341,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 754D6797UK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WagnerTeam/Info.plist;
+				INFOPLIST_FILE = WagnerTeam/Services/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -321,7 +369,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 754D6797UK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WagnerTeam/Info.plist;
+				INFOPLIST_FILE = WagnerTeam/Services/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
