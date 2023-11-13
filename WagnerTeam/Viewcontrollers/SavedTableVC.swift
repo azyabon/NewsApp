@@ -15,6 +15,7 @@ class SavedTableVC: UITableViewController {
     
     var articles: [Article] = []
     var articlesCopy: [Article] = []
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,20 +51,29 @@ class SavedTableVC: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
         if articles.count >= indexPath.row {
-            let currentArticle = articles[indexPath.row]
-            if let url = currentArticle.urlToImage {
-                let url = URL(string: url) ?? URL(string: "https://api.nsn.fm/storage/medialib/377901/mobile_image-4cb7d95d0088984440b9294193cd85d4.jpg")!
-                cell.newsTitle.text = currentArticle.title
-                ImageManager.shared.loadImageData(from: url) { data in
-                    guard let data = data, let imageData = UIImage(data: data) else { return}
-                    DispatchQueue.main.async {
-                        
-                        cell.articleImage.image = imageData
-                        cell.articleImage.clipsToBounds.toggle()
-                    }
-                }
-                ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
+            var currentArticle = articles[indexPath.row]
+            cell.newsTitle.text = currentArticle.title
+            
+            if let imageData = currentArticle.image  { cell.articleImage.image = UIImage(data: imageData) }
+            
+            else {
+                
               
+                if let url = currentArticle.urlToImage {
+                    let url = URL(string: url) ?? URL(string: "https://api.nsn.fm/storage/medialib/377901/mobile_image-4cb7d95d0088984440b9294193cd85d4.jpg")!
+                    cell.newsTitle.text = currentArticle.title
+                    ImageManager.shared.loadImageData(from: url) { data in
+                        guard let data = data, let imageData = UIImage(data: data) else { return}
+                        DispatchQueue.main.async {
+                            currentArticle.image = data
+                            self.articles[indexPath.row] = currentArticle
+                            cell.articleImage.image = imageData
+                            cell.articleImage.clipsToBounds.toggle()
+                        }
+                    }
+                    ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
+                    
+                }
             }
         }
         
@@ -138,6 +148,10 @@ class SavedTableVC: UITableViewController {
     }
     */
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
+        performSegue(withIdentifier: "NewsSegue", sender: nil)
+    }
 }
 
 
@@ -237,5 +251,14 @@ extension SavedTableVC {
             print("Failed to fetch BibleEntity: \(error)")
             return nil
         }
+    }
+}
+
+extension SavedTableVC {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                if segue.identifier == "NewsSegue" {
+                    let vc = segue.destination as! ArticleDetailsVC
+                    vc.article = articles[index]
+                }
     }
 }

@@ -47,23 +47,31 @@ class TopNewsTableVC: UITableViewController {
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
         if articles.count >= indexPath.row {
-            let currentArticle = articles[indexPath.row]
+            var currentArticle = articles[indexPath.row]
+            cell.newsTitle.text = currentArticle.title
+            
+            if let imageData = currentArticle.image  { cell.articleImage.image = UIImage(data: imageData) }
+            
+            else {
             if let url = currentArticle.urlToImage {
                 let url = URL(string: url) ?? URL(string: "https://api.nsn.fm/storage/medialib/377901/mobile_image-4cb7d95d0088984440b9294193cd85d4.jpg")!
                 
                 ImageManager.shared.loadImageData(from: url) { data in
-                guard let data = data, let imageData = UIImage(data: data) else { return}
+                    guard let data = data, let imageData = UIImage(data: data) else { return}
                     
                     DispatchQueue.main.async {
                         let tap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapped))
-                           tap.numberOfTapsRequired = 2
+                        tap.numberOfTapsRequired = 2
                         cell.addGestureRecognizer(tap)
                         cell.articleImage.image = imageData
                         cell.articleImage.clipsToBounds.toggle()
+                        currentArticle.image = data
+                        self.articles[indexPath.row] = currentArticle
                     }
-            }
+                }
                 ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
-            cell.newsTitle.text = currentArticle.title
+               
+            }
         }
         }
         
@@ -146,7 +154,7 @@ extension TopNewsTableVC {
             case .success(let articles):
                 
                 self?.articles = articles.compactMap({
-                    Article(source: nil, title: $0.title, description: $0.content, url: nil, urlToImage: $0.urlToImage, publishedAt: $0.publishedAt, content: $0.content)
+                    Article(source: nil, title: $0.title, description: $0.content, url: nil, urlToImage: $0.urlToImage, publishedAt: $0.publishedAt, content: $0.content, image: nil)
                 })
                 self?.articlesCopy = self?.articles ?? []
                 
@@ -172,7 +180,7 @@ extension TopNewsTableVC {
                // self?.articles = articles
                 
                     self?.articles = articles.compactMap({
-                        Article(source: nil, title: $0.title, description: $0.content, url: nil, urlToImage: $0.urlToImage, publishedAt: $0.publishedAt, content: $0.content)
+                        Article(source: nil, title: $0.title, description: $0.content, url: nil, urlToImage: $0.urlToImage, publishedAt: $0.publishedAt, content: $0.content, image: nil)
                     })
                 
                 DispatchQueue.main.async {
@@ -230,7 +238,7 @@ extension TopNewsTableVC {
            
 
                    for article in results {
-                       let currentArticle = Article(source: nil, title: article.title ?? "", description: article.subtitle ?? "", url: nil, urlToImage: article.imageURL, publishedAt: nil, content: article.content)
+                       let currentArticle = Article(source: nil, title: article.title ?? "", description: article.subtitle ?? "", url: nil, urlToImage: article.imageURL, publishedAt: nil, content: article.content, image: nil)
                        print(currentArticle.title)
                        
 //                       DispatchQueue.main.async {

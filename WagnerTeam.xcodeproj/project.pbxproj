@@ -16,7 +16,7 @@
 		C5BD1DA92B0121AA006879C3 /* SavedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD1DA82B0121AA006879C3 /* SavedTableVC.swift */; };
 		C5EB52542AFA7EFC00B46C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52532AFA7EFC00B46C52 /* AppDelegate.swift */; };
 		C5EB52562AFA7EFC00B46C52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52552AFA7EFC00B46C52 /* SceneDelegate.swift */; };
-		C5EB52582AFA7EFC00B46C52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52572AFA7EFC00B46C52 /* ViewController.swift */; };
+		C5EB52582AFA7EFC00B46C52 /* ArticleDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EB52572AFA7EFC00B46C52 /* ArticleDetailsVC.swift */; };
 		C5EB525B2AFA7EFC00B46C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5EB52592AFA7EFC00B46C52 /* Main.storyboard */; };
 		C5EB525E2AFA7EFC00B46C52 /* WagnerTeam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5EB525C2AFA7EFC00B46C52 /* WagnerTeam.xcdatamodeld */; };
 		C5EB52602AFA7EFE00B46C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5EB525F2AFA7EFE00B46C52 /* Assets.xcassets */; };
@@ -34,7 +34,7 @@
 		C5EB52502AFA7EFC00B46C52 /* WagnerTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WagnerTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EB52532AFA7EFC00B46C52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5EB52552AFA7EFC00B46C52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C5EB52572AFA7EFC00B46C52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C5EB52572AFA7EFC00B46C52 /* ArticleDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsVC.swift; sourceTree = "<group>"; };
 		C5EB525A2AFA7EFC00B46C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C5EB525D2AFA7EFC00B46C52 /* WagnerTeam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WagnerTeam.xcdatamodel; sourceTree = "<group>"; };
 		C5EB525F2AFA7EFE00B46C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		C5BD1D962AFBB6B5006879C3 /* Viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				C5EB52572AFA7EFC00B46C52 /* ViewController.swift */,
+				C5EB52572AFA7EFC00B46C52 /* ArticleDetailsVC.swift */,
 				C5BD1D992AFBB7D4006879C3 /* TopNewsTableVC.swift */,
 				C5BD1DA82B0121AA006879C3 /* SavedTableVC.swift */,
 			);
@@ -218,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5EB52582AFA7EFC00B46C52 /* ViewController.swift in Sources */,
+				C5EB52582AFA7EFC00B46C52 /* ArticleDetailsVC.swift in Sources */,
 				C5EB52542AFA7EFC00B46C52 /* AppDelegate.swift in Sources */,
 				C5BD1D9A2AFBB7D4006879C3 /* TopNewsTableVC.swift in Sources */,
 				C5BD1DA52B00E70D006879C3 /* ImageManager.swift in Sources */,

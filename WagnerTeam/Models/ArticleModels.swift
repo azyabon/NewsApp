@@ -20,7 +20,7 @@ struct Article: Codable {
     let urlToImage: String?
     let publishedAt: String?
     let content: String?
-    var isSaved: Bool? = false
+    var image: Data?
 }
 
 struct Source: Codable {
