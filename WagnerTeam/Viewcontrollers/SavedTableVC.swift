@@ -20,7 +20,7 @@ class SavedTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.showsVerticalScrollIndicator.toggle()
         fetchSavedArticlesFromCoredata()
-        setupSearchController()
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,7 +29,10 @@ class SavedTableVC: UITableViewController {
     }
     
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        articles = []
+        fetchSavedArticlesFromCoredata()
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,30 +47,34 @@ class SavedTableVC: UITableViewController {
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
         if articles.count >= indexPath.row {
             let currentArticle = articles[indexPath.row]
             if let url = currentArticle.urlToImage {
                 let url = URL(string: url) ?? URL(string: "https://api.nsn.fm/storage/medialib/377901/mobile_image-4cb7d95d0088984440b9294193cd85d4.jpg")!
-                
+                cell.newsTitle.text = currentArticle.title
                 ImageManager.shared.loadImageData(from: url) { data in
-                guard let data = data, let imageData = UIImage(data: data) else { return}
+                    guard let data = data, let imageData = UIImage(data: data) else { return}
                     DispatchQueue.main.async {
-
+                        
                         cell.articleImage.image = imageData
                         cell.articleImage.clipsToBounds.toggle()
                     }
-            }
+                }
                 ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
-            cell.newsTitle.text = currentArticle.title
-        }
+              
+            }
         }
         
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [
+            makeCompleteContextualAction(forRowAt: indexPath)
+        ])
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = UITableView.automaticDimension
@@ -132,66 +139,12 @@ class SavedTableVC: UITableViewController {
     */
 
 }
-// MARK: - Network funcs
-extension SavedTableVC {
 
-    
-    func searchBarSearchButtonClicked(_ searchBarText: String) {
-        if searchBarText.isEmpty  {
-            return
-        }
-        
-        NetworkManager.shared.search(with: searchBarText) { [weak self] result in
-            switch result {
-            case .success(let articles):
-                
-               // self?.articles = articles
-                
-                    self?.articles = articles.compactMap({
-                        Article(source: nil, title: $0.title, description: $0.content, url: nil, urlToImage: $0.urlToImage, publishedAt: $0.publishedAt, content: $0.content)
-                    })
-                
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                  //  self?.searchVC.dismiss(animated: true, completion: nil)
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
-}
-
-// - MARK: Tab bar config
-
-extension SavedTableVC: UISearchResultsUpdating {
-    func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Bibles"
-        tableView.tableHeaderView = searchController.searchBar
-        definesPresentationContext = true
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        let text = searchController.searchBar.text ?? ""
-        if text.isEmpty {
-            articles = articlesCopy
-            tableView.reloadData()
-        } else {
-            searchBarSearchButtonClicked(searchController.searchBar.text ?? "")
-        }
-    }
-}
 
 
 extension SavedTableVC {
     
-    @objc func doubleTapped(at index: Int) {
-        CoreDataManager.shared.SaveArticleToCoreData(article: articles[index])
-    }
+   
     
     public func fetchSavedArticlesFromCoredata() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -225,4 +178,64 @@ extension SavedTableVC {
 
     }
     
+}
+
+extension SavedTableVC {
+    private func makeCompleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
+        
+     
+        let actionTap =  UIContextualAction(style: .normal, title: nil) { (action, swipeButtonView, completion) in
+            
+            
+            self.deleteSavedBible(at: indexPath)
+            
+            completion(true)
+        }
+      
+                actionTap.image = UIImage(systemName: "trash")
+                actionTap.backgroundColor = .red
+                actionTap.image?.withTintColor(.green)
+            
+        
+
+        
+        return actionTap
+    }
+    
+    internal func deleteSavedBible(at indexPath: IndexPath) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let articleEntity = convertToBibleEntity(articles[indexPath.row], managedContext: managedContext) else { return }
+        
+        managedContext.perform {
+            managedContext.delete(articleEntity)
+            
+            do {
+                try managedContext.save()
+                
+                DispatchQueue.main.async {
+                    self.articles.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            } catch {
+                print("Failed to delete Bible: \(error)")
+            }
+        }
+    }
+    
+    private func convertToBibleEntity(_ article: Article, managedContext: NSManagedObjectContext) -> Articles? {
+        let fetchRequest: NSFetchRequest<Articles> = Articles.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", article.title)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            return results.first
+        } catch {
+            print("Failed to fetch BibleEntity: \(error)")
+            return nil
+        }
+    }
 }
