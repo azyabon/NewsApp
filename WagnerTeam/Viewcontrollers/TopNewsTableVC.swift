@@ -64,9 +64,9 @@ class TopNewsTableVC: UITableViewController {
                         doubleTap.numberOfTapsRequired = 2
                         
                         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(self.singleTapped))
-                        singleTap.minimumPressDuration = 3
+                        singleTap.minimumPressDuration = 1
                         singleTap.allowableMovement = 30
-                        
+                        singleTap.numberOfTapsRequired = 1
                         
                         cell.addGestureRecognizer(doubleTap)
                         cell.addGestureRecognizer(singleTap)
