@@ -15,9 +15,7 @@ class NewsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        newsTitle.sizeToFit()
-        newsTitle.textAlignment = .natural
-        
+
         self.layer.cornerRadius = 12;
         articleImage.layer.cornerRadius = 12
      //   self.layer.MaskToBounds = YES;
