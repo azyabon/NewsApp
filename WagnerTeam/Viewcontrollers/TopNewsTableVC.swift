@@ -230,6 +230,12 @@ extension TopNewsTableVC {
     
     @objc func doubleTapped() {
         CoreDataManager.shared.SaveArticleToCoreData(article: articles[index])
+        let alertController = UIAlertController(title: "Success", message: "Saved", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
+
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+
     }
     
     @objc func singleTapped() {
