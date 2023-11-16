@@ -206,7 +206,7 @@ extension TopNewsTableVC: UISearchResultsUpdating {
     func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Bibles"
+        searchController.searchBar.placeholder = "Search news"
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
