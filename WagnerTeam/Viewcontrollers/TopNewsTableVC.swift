@@ -70,8 +70,10 @@ class TopNewsTableVC: UITableViewController {
                         cell.articleImage.image = imageData
                         cell.articleImage.clipsToBounds.toggle()
                         currentArticle.image = data
-                        self.articles[indexPath.row] = currentArticle
-                    }
+                        if indexPath.row < self.articles.count {
+                            self.articles[indexPath.row] = currentArticle
+                        }
+                        }
                 }
                 ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
                
