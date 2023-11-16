@@ -70,8 +70,10 @@ class TopNewsTableVC: UITableViewController {
                         cell.articleImage.image = imageData
                         cell.articleImage.clipsToBounds.toggle()
                         currentArticle.image = data
-                        self.articles[indexPath.row] = currentArticle
-                    }
+                        if indexPath.row < self.articles.count {
+                            self.articles[indexPath.row] = currentArticle
+                        }
+                        }
                 }
                 ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
                
@@ -206,7 +208,7 @@ extension TopNewsTableVC: UISearchResultsUpdating {
     func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Bibles"
+        searchController.searchBar.placeholder = "Search news"
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
@@ -227,16 +229,18 @@ extension TopNewsTableVC {
     
     @objc func singleTapped() {
        
-        let alertController = UIAlertController(title: "Success", message: "Saved", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Save", style: .default) { action in
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let saveAction = UIAlertAction(title: "Save", style: .default) { action in
             CoreDataManager.shared.SaveArticleToCoreData(article: self.articles[self.index])
         }
         
         let openAction = UIAlertAction(title: "Open", style: .default) { action in
             self.performSegue(withIdentifier: "NetworkSegue", sender: nil)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
        
         alertController.addAction(openAction)
+        alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
 
