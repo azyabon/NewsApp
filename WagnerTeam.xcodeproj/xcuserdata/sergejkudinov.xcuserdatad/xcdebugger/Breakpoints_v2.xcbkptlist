@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "617BC779-1105-41AB-85AF-E62054ADD4EF"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4A8ABE5-02E5-4F5B-B3EE-F2CB657753DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WagnerTeam/Views/NewsCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22857981-6779-4229-A4BB-616492EC6EE4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WagnerTeam/Viewcontrollers/TopNewsTableVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "searchBarSearchButtonClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0CFE7AE0-BACB-4F3A-814A-C6BA33511651"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WagnerTeam/Viewcontrollers/TopNewsTableVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "searchBarSearchButtonClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF378645-71E4-44D8-AB1E-0F2FB339E613"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WagnerTeam/Viewcontrollers/TopNewsTableVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "updateSearchResults(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "ArticleDetailsVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F - 2009702a0bbf7c1d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WagnerTeam.ArticleDetailsVC.articleImage.getter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "WagnerTeam"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejkudinov/Desktop/WagnerTeam/WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F - 48e3666a78e491e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WagnerTeam.ArticleDetailsVC.articleImage.setter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "WagnerTeam"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejkudinov/Desktop/WagnerTeam/WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F - c45d8e72f8f4db1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WagnerTeam.ArticleDetailsVC.articleImage.modify : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "WagnerTeam"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejkudinov/Desktop/WagnerTeam/WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F - f4099a74302a93c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WagnerTeam.ArticleDetailsVC.articleImage.modify : Swift.Optional&lt;__C.UIImageView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "WagnerTeam"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejkudinov/Desktop/WagnerTeam/WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F - e84be99099bf7e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WagnerTeam.ArticleDetailsVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; WagnerTeam.ArticleDetailsVC"
+                  moduleName = "WagnerTeam"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejkudinov/Desktop/WagnerTeam/WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "E126DB86-2771-4F27-97BE-F3ECA6BC968F - 6871499907fcc37e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WagnerTeam.ArticleDetailsVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;WagnerTeam.ArticleDetailsVC&gt;"
+                  moduleName = "WagnerTeam"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejkudinov/Desktop/WagnerTeam/WagnerTeam/Viewcontrollers/ArticleDetailsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D81591A-B1E3-4FD6-BD64-72203C0EAD13"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WagnerTeam/Viewcontrollers/TopNewsTableVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "singleTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
