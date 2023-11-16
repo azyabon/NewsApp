@@ -60,16 +60,13 @@ class TopNewsTableVC: UITableViewController {
                     guard let data = data, let imageData = UIImage(data: data) else { return}
                     
                     DispatchQueue.main.async {
-                        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapped))
-                        doubleTap.numberOfTapsRequired = 2
-                        
-                        let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(self.singleTapped))
-                        singleTap.minimumPressDuration = 1
-                        singleTap.allowableMovement = 30
+                        let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.singleTapped))
                         singleTap.numberOfTapsRequired = 1
                         
-                        cell.addGestureRecognizer(doubleTap)
+                        
+                        
                         cell.addGestureRecognizer(singleTap)
+                      
                         cell.articleImage.image = imageData
                         cell.articleImage.clipsToBounds.toggle()
                         currentArticle.image = data
@@ -228,20 +225,24 @@ extension TopNewsTableVC: UISearchResultsUpdating {
 
 extension TopNewsTableVC {
     
-    @objc func doubleTapped() {
-        CoreDataManager.shared.SaveArticleToCoreData(article: articles[index])
+    @objc func singleTapped() {
+       
         let alertController = UIAlertController(title: "Success", message: "Saved", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
-
+        let cancelAction = UIAlertAction(title: "Save", style: .default) { action in
+            CoreDataManager.shared.SaveArticleToCoreData(article: self.articles[self.index])
+        }
+        
+        let openAction = UIAlertAction(title: "Open", style: .default) { action in
+            self.performSegue(withIdentifier: "NetworkSegue", sender: nil)
+        }
+       
+        alertController.addAction(openAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
 
     }
     
-    @objc func singleTapped() {
-        performSegue(withIdentifier: "NetworkSegue", sender: nil)
-        print("asdf")
-    }
+
     
     public func fetchSavedArticlesFromCoredata() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
