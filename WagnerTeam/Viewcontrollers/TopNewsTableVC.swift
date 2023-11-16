@@ -227,16 +227,18 @@ extension TopNewsTableVC {
     
     @objc func singleTapped() {
        
-        let alertController = UIAlertController(title: "Success", message: "Saved", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Save", style: .default) { action in
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let saveAction = UIAlertAction(title: "Save", style: .default) { action in
             CoreDataManager.shared.SaveArticleToCoreData(article: self.articles[self.index])
         }
         
         let openAction = UIAlertAction(title: "Open", style: .default) { action in
             self.performSegue(withIdentifier: "NetworkSegue", sender: nil)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
        
         alertController.addAction(openAction)
+        alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
 
