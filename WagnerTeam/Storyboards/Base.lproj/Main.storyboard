@@ -60,6 +60,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Top news" image="newspaper" catalog="system" selectedImage="newspaper.fill" id="R8a-eA-mPO"/>
+                    <connections>
+                        <segue destination="Akh-vQ-iJV" kind="show" identifier="NetworkSegue" id="jzj-N9-WTQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbs-eo-qTS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,6 +195,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GYX-2c-nYs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oaf-nT-WsA">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -205,6 +209,9 @@
             <point key="canvasLocation" x="1871.0144927536232" y="33.482142857142854"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jzj-N9-WTQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="newspaper" catalog="system" width="128" height="111"/>
         <image name="newspaper.fill" catalog="system" width="128" height="112"/>

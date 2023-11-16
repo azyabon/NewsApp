@@ -60,9 +60,16 @@ class TopNewsTableVC: UITableViewController {
                     guard let data = data, let imageData = UIImage(data: data) else { return}
                     
                     DispatchQueue.main.async {
-                        let tap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapped))
-                        tap.numberOfTapsRequired = 2
-                        cell.addGestureRecognizer(tap)
+                        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapped))
+                        doubleTap.numberOfTapsRequired = 2
+                        
+                        let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(self.singleTapped))
+                        singleTap.minimumPressDuration = 3
+                        singleTap.allowableMovement = 30
+                        
+                        
+                        cell.addGestureRecognizer(doubleTap)
+                        cell.addGestureRecognizer(singleTap)
                         cell.articleImage.image = imageData
                         cell.articleImage.clipsToBounds.toggle()
                         currentArticle.image = data
@@ -225,6 +232,11 @@ extension TopNewsTableVC {
         CoreDataManager.shared.SaveArticleToCoreData(article: articles[index])
     }
     
+    @objc func singleTapped() {
+        performSegue(withIdentifier: "NetworkSegue", sender: nil)
+        print("asdf")
+    }
+    
     public func fetchSavedArticlesFromCoredata() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -249,11 +261,19 @@ extension TopNewsTableVC {
         } catch {
             print("Failed to fetch articles: \(error)")
         }
-        
-        
-        
-        
+    }
+}
 
+
+extension TopNewsTableVC {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                if segue.identifier == "NetworkSegue" {
+                    let vc = segue.destination as! ArticleDetailsVC
+                    vc.article = articles[index]
+                }
     }
     
+    
+
 }
+
