@@ -16,6 +16,7 @@ class TopNewsTableVC: UITableViewController {
     var articles: [Article] = []
     var articlesCopy: [Article] = []
     var index = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.showsVerticalScrollIndicator.toggle()
@@ -31,7 +32,7 @@ class TopNewsTableVC: UITableViewController {
 
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -42,7 +43,7 @@ class TopNewsTableVC: UITableViewController {
         return articles.count
     }
 
-   
+   //выводим ячейку по заранее созданному классу ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
@@ -55,7 +56,7 @@ class TopNewsTableVC: UITableViewController {
             else {
             if let url = currentArticle.urlToImage {
                 let url = URL(string: url) ?? URL(string: "https://api.nsn.fm/storage/medialib/377901/mobile_image-4cb7d95d0088984440b9294193cd85d4.jpg")!
-                
+                //получение картинки
                 ImageManager.shared.loadImageData(from: url) { data in
                     guard let data = data, let imageData = UIImage(data: data) else { return}
                     
@@ -70,6 +71,7 @@ class TopNewsTableVC: UITableViewController {
                         }
                         }
                 }
+                //че то типо дизайна черно бели
                 ((indexPath.row + 1) % 2 == 0) ? (cell.backgroundColor = .black) : (cell.backgroundColor = .systemGray5)
                
             }
@@ -80,7 +82,7 @@ class TopNewsTableVC: UITableViewController {
     }
     
 
-    
+    //рассчитываем высоту ячейки
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = UITableView.automaticDimension
         if height > 100 {
@@ -90,13 +92,13 @@ class TopNewsTableVC: UITableViewController {
         }
        // UITableView.automaticDimension
     }
-    
+    //мин высота
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         114
     }
     
  
-
+    //вообще тут тупо для селекта, но сделал вызов алерта с кнопочками выбрать или сохранить
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         singleTapped(index: indexPath.row)
@@ -108,16 +110,17 @@ class TopNewsTableVC: UITableViewController {
 }
 // MARK: - Network funcs
 extension TopNewsTableVC {
+    //загрузка историй с апихи
      func fetchTopStories() {
         NetworkManager.shared.getTopStories { [weak self ] result in
             switch result {
             case .success(let articles):
-                
+                //функционалкой прогоняем ответ и пихаем его в массив таких же артиклов
                 self?.articles = articles.compactMap({
                     Article(source: nil, title: $0.title, description: $0.content, url: nil, urlToImage: $0.urlToImage, publishedAt: $0.publishedAt, content: $0.content, image: nil)
                 })
                 self?.articlesCopy = self?.articles ?? []
-                
+                //по загрузке перегружаем вьюху для вывода
                 DispatchQueue.main.async {
                
                     self?.tableView.reloadData()
@@ -127,7 +130,7 @@ extension TopNewsTableVC {
             }
         }
     }
-    
+    //поиск почти то еж самое что загрузка
     func searchBarSearchButtonClicked(_ searchBarText: String) {
         if searchBarText.isEmpty  {
             return
@@ -157,7 +160,7 @@ extension TopNewsTableVC {
 }
 
 // - MARK: Tab bar config
-
+// расширка для конфигурации
 extension TopNewsTableVC: UISearchResultsUpdating {
     func setupSearchController() {
         searchController.searchResultsUpdater = self
@@ -180,7 +183,7 @@ extension TopNewsTableVC: UISearchResultsUpdating {
 
 
 extension TopNewsTableVC {
-    
+    //тот самый метод с алертом и кнопками
     func singleTapped(index: Int) {
        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -201,7 +204,7 @@ extension TopNewsTableVC {
     }
     
 
-    
+   //загрузка кордаты
     public func fetchSavedArticlesFromCoredata() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -209,7 +212,7 @@ extension TopNewsTableVC {
 
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Articles> = Articles.fetchRequest()
-
+        
         do {
             let results = try managedContext.fetch(fetchRequest)
            
@@ -231,6 +234,7 @@ extension TopNewsTableVC {
 
 
 extension TopNewsTableVC {
+    //переход к деталке с передачей статьи
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 if segue.identifier == "NetworkSegue" {
                     let vc = segue.destination as! ArticleDetailsVC

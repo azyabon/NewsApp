@@ -22,14 +22,10 @@ class SavedTableVC: UITableViewController {
         tableView.showsVerticalScrollIndicator.toggle()
         fetchSavedArticlesFromCoredata()
        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
     
-
+    //позволяет подтягивать новые сохраненные статьи после сохранения на первом экране
     override func viewWillAppear(_ animated: Bool) {
         articles = []
         fetchSavedArticlesFromCoredata()
@@ -46,7 +42,7 @@ class SavedTableVC: UITableViewController {
         return articles.count
     }
 
-   
+    //настройка ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsCell
@@ -79,7 +75,7 @@ class SavedTableVC: UITableViewController {
         
         return cell
     }
-    
+    // действие по свайпу(удаление)
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
             makeCompleteContextualAction(forRowAt: indexPath)
@@ -103,50 +99,8 @@ class SavedTableVC: UITableViewController {
  
 
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
+    //переход к деталке
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
@@ -195,13 +149,14 @@ extension SavedTableVC {
 }
 
 extension SavedTableVC {
+    //свайп на удаление
     private func makeCompleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
         
      
         let actionTap =  UIContextualAction(style: .normal, title: nil) { (action, swipeButtonView, completion) in
             
             
-            self.deleteSavedBible(at: indexPath)
+            self.deleteSavedArticle(at: indexPath)
             
             completion(true)
         }
@@ -215,14 +170,14 @@ extension SavedTableVC {
         
         return actionTap
     }
-    
-    internal func deleteSavedBible(at indexPath: IndexPath) {
+    //удаление статьи с кордаты и экрана
+    internal func deleteSavedArticle(at indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        guard let articleEntity = convertToBibleEntity(articles[indexPath.row], managedContext: managedContext) else { return }
+        guard let articleEntity = convertToArticleEntity(articles[indexPath.row], managedContext: managedContext) else { return }
         
         managedContext.perform {
             managedContext.delete(articleEntity)
@@ -239,8 +194,8 @@ extension SavedTableVC {
             }
         }
     }
-    
-    private func convertToBibleEntity(_ article: Article, managedContext: NSManagedObjectContext) -> Articles? {
+    //перевод с типа объекта статьи в тип объекта кордаты хз зачем можно было и без него но как есть
+    private func convertToArticleEntity(_ article: Article, managedContext: NSManagedObjectContext) -> Articles? {
         let fetchRequest: NSFetchRequest<Articles> = Articles.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "title == %@", article.title)
         

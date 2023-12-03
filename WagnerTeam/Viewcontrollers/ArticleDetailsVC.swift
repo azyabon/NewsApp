@@ -26,6 +26,7 @@ class ArticleDetailsVC: UIViewController {
 }
 
 extension ArticleDetailsVC {
+    //вывод всего
     func setupUI() {
         guard let article = article else {
             return
@@ -33,8 +34,23 @@ extension ArticleDetailsVC {
         if let imageData = article.image {
             articleImage.image = UIImage(data: imageData)
         }
-        descriptionLabel.text = article.description ?? "hello from E. Prigozhin"
+        
+        var str = article.content ?? "WGNR"
+        str = removeTextAfterBracket(text: str)
+        descriptionLabel.text = str
         titleLabel.text = article.title
+        titleLabel.sizeToFit()
       
     }
+    
+    //убираем мусор
+    func removeTextAfterBracket(text: String) -> String {
+        if let range = text.range(of: "[") {
+            let index = text.distance(from: text.startIndex, to: range.lowerBound)
+            return String(text.prefix(upTo: text.index(text.startIndex, offsetBy: index)))
+        }
+        return text
+    }
+
+    
 }

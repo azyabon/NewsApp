@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
+    //добавление кордаты в проект
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
